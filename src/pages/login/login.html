@@ -1,0 +1,42 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Cheque details</ion-title>
+
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+  <form (submit)="doLogin()">
+    <ion-list>
+
+      <ion-item>
+        <ion-label>Num Cheque</ion-label>
+        <ion-input type="text" [(ngModel)]="account.numCheque" name="numCheque" disabled="true"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>RIB</ion-label>
+        <ion-input type="text" [(ngModel)]="account.rib" name="rib" disabled="true"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Code banque</ion-label>
+        <ion-input type="text" [(ngModel)]="account.codeBanque" name="codeBanque" disabled="true"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Montant</ion-label>
+        <ion-input type="number" [(ngModel)]="account.montant" name="montant"></ion-input>
+      </ion-item>
+
+
+      <div padding>
+        <button ion-button color="primary" block>check</button>
+      </div>
+
+    </ion-list>
+  </form>
+</ion-content>
