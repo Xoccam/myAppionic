@@ -1,12 +1,27 @@
-<ion-content scroll="false">
-  <div class="splash-bg"></div>
-  <div class="splash-info">
-    <div class="splash-logo"></div>
-    <div class="splash-intro">
-      BCT
+<!--<ion-content scroll="false">-->
+<!--<div class="splash-bg"></div>-->
+<!--<div class="splash-info">-->
+<!--<div class="splash-logo"></div>-->
+<!--<div class="splash-intro">-->
+<!--Check Cheque-->
+<!--</div>-->
+<!--</div>-->
+<!--<div padding>-->
+<!--<button ion-button block (click)="scanCode()">Scan</button>-->
+<!--</div>-->
+<!--</ion-content>-->
+
+
+<ion-content style="background: url('../../assets/img/bgBCT.png') center; background-size: cover;" >
+  <!--<div >-->
+  <!--<img src="images/default_category.jpg" alt="Ionic Logo" style="margin-left: 130px">-->
+  <!--</div>-->
+  <div padding style="margin-top: 33em">
+    <div>
+      <img src="../../assets/img/scan.png" alt="Scan" style="margin-left: 5em" width="200px" (click)="scanCode()">
     </div>
-  </div>
-  <div padding>
-    <button ion-button block (click)="scanCode()">Scan</button>
+    <!--<button block (click)="click()" round large >Scan</button>-->
+    <!--<button (click)="openPageStore()" *ngIf="base64Image" ion-button round>Start</button>-->
+    <!--<button (click)="openPageStore()"  ion-button>Start</button>-->
   </div>
 </ion-content>
