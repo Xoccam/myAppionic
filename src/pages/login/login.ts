@@ -3,6 +3,8 @@ import { TranslateService } from '@ngx-translate/core';
 import { IonicPage, NavController, ToastController, AlertController } from 'ionic-angular';
 
 import { User } from '../../providers/providers';
+import {HttpClient} from "@angular/common/http";
+import {Observable} from "rxjs/Observable";
 
 
 @IonicPage()
@@ -23,38 +25,56 @@ export class LoginPage {
 
   // Our translated text strings
 
+  credentials: Observable<any>;
+  cin;
+  nom;
+  prenom;
+  status;
 
   constructor(public navCtrl: NavController,
     public user: User,
     public toastCtrl: ToastController,
     public translateService: TranslateService,
-    private alertCtrl: AlertController) {
+    private alertCtrl: AlertController, public httpClient: HttpClient) {
 
   }
 
   public openModal(){
-    let alert = this.alertCtrl.create({
-      title: 'Confirm check',
-      message: 'CIN : ******** ?',
-      buttons: [
-        {
-          text: 'Cancel',
-          role: 'cancel',
-          handler: () => {
-            console.log('Cancel clicked');
-            this.navCtrl.push('WelcomePage');
-          }
-        },
-        {
-          text: 'Confirm',
-          handler: () => {
-            console.log('Confirm');
-            this.navCtrl.push('SignupPage');
-          }
-        }
-      ]
-    });
-    alert.present();
+
+    this.credentials = this.httpClient.post('http://10.2.1.138:6060/getCredentials',{"rib":"999","numCheque":"111","montant":33});
+    this.credentials
+      .subscribe(data => {
+        this.cin=data[0];
+        this.nom=data[1];
+        this.prenom=data[2];
+        this.status=data[3];
+
+        let alert = this.alertCtrl.create({
+          title: 'Confirm check',
+          message: 'CIN : '+ this.cin + '<br> First Name : ' + this.nom + '<br> Last Name : ' + this.prenom ,
+          buttons: [
+            {
+              text: 'Cancel',
+              role: 'cancel',
+              handler: () => {
+                console.log('Cancel clicked');
+                console.log(this.cin);
+                this.navCtrl.push('WelcomePage');
+              }
+            },
+            {
+              text: 'Confirm',
+              handler: () => {
+                console.log('Confirm');
+                this.navCtrl.push('SignupPage');
+              }
+            }
+          ]
+        });
+        alert.present();
+        console.log('my data: ', this.cin);
+      })
+
   }
 
   // Attempt to login in through our User service

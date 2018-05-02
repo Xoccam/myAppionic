@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController } from 'ionic-angular';
 import { Camera, CameraOptions } from '@ionic-native/camera';
+import {HttpClient} from "@angular/common/http";
+import {Observable} from "rxjs/Observable";
 
 /**
  * The Welcome Page is a splash page that quickly describes the app,
@@ -14,11 +16,24 @@ import { Camera, CameraOptions } from '@ionic-native/camera';
   templateUrl: 'welcome.html'
 })
 export class WelcomePage {
+  credentials: Observable<any>;
+  constructor(public navCtrl: NavController,private camera: Camera ,public httpClient: HttpClient) {
 
-  constructor(public navCtrl: NavController,private camera: Camera) { }
+  }
 
+
+  getCred(){
+
+    this.credentials = this.httpClient.post('http://10.2.1.138:6060/getCredentials',{"rib":"999","numCheque":"111","montant":33});
+    this.credentials
+      .subscribe(data => {
+        console.log('my data: ', data);
+      })
+
+  }
 
   scanCode() {
+    // this.getCred();
     const options: CameraOptions = {
       quality: 100,
       destinationType: this.camera.DestinationType.DATA_URL,

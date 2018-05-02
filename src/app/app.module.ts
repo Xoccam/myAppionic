@@ -14,6 +14,8 @@ import { Settings } from '../providers/providers';
 import { User } from '../providers/providers';
 import { Api } from '../providers/providers';
 import { MyApp } from './app.component';
+import {HTTP} from "@ionic-native/http";
+
 
 // The translate loader needs to know where to load i18n files
 // in Ionic's static asset pipeline.
@@ -61,6 +63,7 @@ export function provideSettings(storage: Storage) {
     Api,
     Items,
     User,
+    HTTP,
     Camera,
     SplashScreen,
     StatusBar,
