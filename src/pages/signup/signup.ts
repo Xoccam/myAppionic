@@ -33,6 +33,10 @@ export class SignupPage {
     })
   }
 
+  cancel(){
+    this.navCtrl.push('WelcomePage');
+  }
+
   doSignup() {
     // Attempt to login in through our User service
     this.user.signup(this.account).subscribe((resp) => {

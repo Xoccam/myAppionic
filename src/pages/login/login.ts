@@ -46,7 +46,7 @@ export class LoginPage {
           }
         },
         {
-          text: 'Buy',
+          text: 'Confirm',
           handler: () => {
             console.log('Confirm');
             this.navCtrl.push('SignupPage');

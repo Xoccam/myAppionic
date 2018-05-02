@@ -29,11 +29,12 @@ export class WelcomePage {
       // imageData is either a base64 encoded string or a file URI
       // If it's base64:
       let base64Image = 'data:image/jpeg;base64,' + imageData;
+      this.navCtrl.push('LoginPage');
     }, (err) => {
       // Handle error
     });
 
-    this.navCtrl.push('LoginPage');
+    // this.navCtrl.push('LoginPage');
   }
 
   inputCode() {

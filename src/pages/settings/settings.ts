@@ -41,6 +41,10 @@ export class SettingsPage {
     public translate: TranslateService) {
   }
 
+  close(){
+    this.navCtrl.push('WelcomePage');
+  }
+
   _buildForm() {
     let group: any = {
       option1: [this.options.option1],
