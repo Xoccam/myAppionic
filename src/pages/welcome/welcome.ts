@@ -33,7 +33,7 @@ export class WelcomePage {
       // Handle error
     });
 
-    // this.navCtrl.push('LoginPage');
+    this.navCtrl.push('LoginPage');
   }
 
   inputCode() {

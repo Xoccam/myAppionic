@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
-import { IonicPage, NavController, ToastController } from 'ionic-angular';
-import { ModalController } from 'ionic-angular';
+import { IonicPage, NavController, ToastController, AlertController } from 'ionic-angular';
 
 import { User } from '../../providers/providers';
 
@@ -29,13 +28,33 @@ export class LoginPage {
     public user: User,
     public toastCtrl: ToastController,
     public translateService: TranslateService,
-    public modalCtrl: ModalController) {
+    private alertCtrl: AlertController) {
 
   }
 
   public openModal(){
-    var modalPage = this.modalCtrl.create('ModalPage'); modalPage.present();
-  console.log("test");
+    let alert = this.alertCtrl.create({
+      title: 'Confirm check',
+      message: 'CIN : ******** ?',
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          handler: () => {
+            console.log('Cancel clicked');
+            this.navCtrl.push('WelcomePage');
+          }
+        },
+        {
+          text: 'Buy',
+          handler: () => {
+            console.log('Confirm');
+            this.navCtrl.push('SignupPage');
+          }
+        }
+      ]
+    });
+    alert.present();
   }
 
   // Attempt to login in through our User service

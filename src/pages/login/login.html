@@ -32,14 +32,12 @@
         <ion-input type="number" [(ngModel)]="account.montant" name="montant"></ion-input>
       </ion-item>
 
-
-      <div padding>
-        <button ion-button color="primary" block>check</button>
-      </div>
-
     </ion-list>
   </form>
+
+
   <div padding>
-  <button ion-button (click)="openModal()">Open Modal</button>
+    <button ion-button color="primary" (click)="openModal()" block>check</button>
   </div>
+
 </ion-content>
