@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { IonicPage, NavController, ToastController } from 'ionic-angular';
+import { ModalController } from 'ionic-angular';
 
 import { User } from '../../providers/providers';
-import { MainPage } from '../pages';
+
 
 @IonicPage()
 @Component({
@@ -22,21 +23,26 @@ export class LoginPage {
   };
 
   // Our translated text strings
-  private loginErrorString: string;
+
 
   constructor(public navCtrl: NavController,
     public user: User,
     public toastCtrl: ToastController,
-    public translateService: TranslateService) {
+    public translateService: TranslateService,
+    public modalCtrl: ModalController) {
 
-    this.translateService.get('LOGIN_ERROR').subscribe((value) => {
-      this.loginErrorString = value;
-    })
+  }
+
+  public openModal(){
+    var modalPage = this.modalCtrl.create('ModalPage'); modalPage.present();
+  console.log("test");
   }
 
   // Attempt to login in through our User service
-  doLogin() {
+  checkCIN() {
     this.navCtrl.push('SignupPage');
+
+
     // this.user.login(this.account).subscribe((resp) => {
     //   this.navCtrl.push('SignupPage');
     // }, (err) => {

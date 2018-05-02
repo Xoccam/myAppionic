@@ -9,7 +9,7 @@
 
 
 <ion-content>
-  <form (submit)="doLogin()">
+  <form (submit)="checkCIN()">
     <ion-list>
 
       <ion-item>
@@ -39,4 +39,7 @@
 
     </ion-list>
   </form>
+  <div padding>
+  <button ion-button (click)="openModal()">Open Modal</button>
+  </div>
 </ion-content>
