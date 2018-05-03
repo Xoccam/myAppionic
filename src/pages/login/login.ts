@@ -75,7 +75,11 @@ export class LoginPage {
               text: 'Confirm',
               handler: () => {
                 console.log('Confirm');
-                this.navCtrl.push('SignupPage');
+                let TIME_IN_MS = 2000;
+                let hideFooterTimeout = setTimeout( () => {
+                  this.navCtrl.push('SignupPage');
+                }, TIME_IN_MS);
+
               }
             }
           ],
