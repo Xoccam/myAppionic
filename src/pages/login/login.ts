@@ -18,8 +18,8 @@ export class LoginPage {
   // If you're using the username field with or without email, make
   // sure to add it to the type
   account: { numCheque: string, montant: string ,codeAgence:string, rib: string , codeBanque: string} = {
-    numCheque: '9123456',
-    rib: '06801000402500339580',
+    numCheque: '2495159',
+    rib: '000402500350153',
     codeBanque: '06',
     codeAgence: '801',
     montant: ''
@@ -41,8 +41,17 @@ export class LoginPage {
   }
 
   public openModal(){
+    if ( this.account.montant == '' ) {              // invalid login
+      let alertttt = this.alertCtrl.create({
+        title: 'Incorrect Amount',
+        subTitle: 'Please enter the amount !',
+        buttons: ['Ok']
+      });
+      alertttt.present();
+      return false;
+    }
     this.amountprov.amount = this.account.montant;
-    this.credentials = this.httpClient.post('http://10.2.1.128:6060/getCredentials',{"rib":"000402500339580","numCheque":"9123456","montant":this.account.montant});
+    this.credentials = this.httpClient.post('http://10.2.1.128:6060/getCredentials',{"rib":"000402500350153","numCheque":"2495159","montant":this.account.montant});
     this.credentials
       .subscribe(data => {
         this.cin=data[0];

@@ -34,7 +34,7 @@ export class SignupPage {
     public toastCtrl: ToastController,
     public translateService: TranslateService,public httpClient: HttpClient,private alertCtrl: AlertController,public amountprov: AmountProvider) {
 
-    this.credentials = this.httpClient.post('http://10.2.1.128:6060/getCredentials',{"rib":"000402500339580","numCheque":"9123456","montant":this.amountprov.amount});
+    this.credentials = this.httpClient.post('http://10.2.1.128:6060/getCredentials',{"rib":"000402500350153","numCheque":"2495159","montant":this.amountprov.amount});
     this.credentials
       .subscribe(data => {
         this.status=data[3];
