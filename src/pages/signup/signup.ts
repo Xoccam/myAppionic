@@ -75,12 +75,19 @@ export class SignupPage {
               let alerttt = this.alertCtrl.create({
                 title: 'Success',
                 subTitle: 'Funds are succesfuly blocked',
-                buttons: ['Ok']
+                buttons: [{
+                  text: 'OK',
+                  handler: () => {
+                    this.navCtrl.push('WelcomePage');
+                  }
+                }]
               });
-              alerttt.present();
-              // logged in!
-              console.log("ok ok ok");
-              this.navCtrl.push('WelcomePage');
+
+              let TIME_IN_MS = 2000;
+              let hideFooterTimeout = setTimeout( () => {
+                alerttt.present();
+              }, TIME_IN_MS);
+
             } else {
               // invalid login
               alert.dismiss();

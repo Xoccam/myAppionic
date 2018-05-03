@@ -16,10 +16,11 @@ export class LoginPage {
   // The account fields for the login form.
   // If you're using the username field with or without email, make
   // sure to add it to the type
-  account: { numCheque: string, montant: string , rib: string , codeBanque: string} = {
-    numCheque: '346137849346137849',
-    rib: '64857123461378491206',
-    codeBanque: '64',
+  account: { numCheque: string, montant: string ,codeAgence:string, rib: string , codeBanque: string} = {
+    numCheque: '9123456',
+    rib: '06801000402500339580',
+    codeBanque: '06',
+    codeAgence: '801',
     montant: ''
   };
 
@@ -41,14 +42,13 @@ export class LoginPage {
 
   public openModal(){
 
-    this.credentials = this.httpClient.post('http://10.2.1.128:6060/getCredentials',{"rib":"999","numCheque":"111","montant":33});
+    this.credentials = this.httpClient.post('http://10.2.1.128:6060/getCredentials',{"rib":"999","numCheque":"111","montant":this.account.montant});
     this.credentials
       .subscribe(data => {
         this.cin=data[0];
         this.nom=data[1];
         this.prenom=data[2];
         this.status=data[3];
-
         let alert = this.alertCtrl.create({
           title: 'Identity details',
           message: 'Please check if the cheque\'s owner  matches these details !<br><br>' + '<b>CIN</b> : '+ this.cin + '<br> <b>First Name</b> : ' + this.nom + '<br> <b>Last Name</b> : ' + this.prenom ,
