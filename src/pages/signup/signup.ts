@@ -32,7 +32,7 @@ export class SignupPage {
     public toastCtrl: ToastController,
     public translateService: TranslateService,public httpClient: HttpClient,private alertCtrl: AlertController) {
 
-    this.credentials = this.httpClient.post('http://10.2.1.138:6060/getCredentials',{"rib":"222","numCheque":"123456","montant":30});
+    this.credentials = this.httpClient.post('http://10.2.1.128:6060/getCredentials',{"rib":"222","numCheque":"123456","montant":30});
     this.credentials
       .subscribe(data => {
         this.status=data[3];
@@ -71,11 +71,26 @@ export class SignupPage {
           text: 'Confirm',
           handler: data => {
             if (data.password=="123") {
+              // alert.dismiss();
+              let alerttt = this.alertCtrl.create({
+                title: 'Success',
+                subTitle: 'Funds are succesfuly blocked',
+                buttons: ['Ok']
+              });
+              alerttt.present();
               // logged in!
               console.log("ok ok ok");
               this.navCtrl.push('WelcomePage');
             } else {
               // invalid login
+              alert.dismiss();
+              let alertt = this.alertCtrl.create({
+                title: 'Incorrect Password',
+                subTitle: 'Please enter your correct password !',
+                buttons: ['Ok']
+              });
+              alertt.present();
+              console.log("no no no");
               return false;
             }
           }

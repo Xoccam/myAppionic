@@ -41,7 +41,7 @@ export class LoginPage {
 
   public openModal(){
 
-    this.credentials = this.httpClient.post('http://10.2.1.138:6060/getCredentials',{"rib":"999","numCheque":"111","montant":33});
+    this.credentials = this.httpClient.post('http://10.2.1.128:6060/getCredentials',{"rib":"999","numCheque":"111","montant":33});
     this.credentials
       .subscribe(data => {
         this.cin=data[0];
@@ -50,8 +50,8 @@ export class LoginPage {
         this.status=data[3];
 
         let alert = this.alertCtrl.create({
-          title: 'Confirm check',
-          message: 'CIN : '+ this.cin + '<br> First Name : ' + this.nom + '<br> Last Name : ' + this.prenom ,
+          title: 'Identity details',
+          message: 'Please check if the cheque\'s owner  matches these details !<br><br>' + '<b>CIN</b> : '+ this.cin + '<br> <b>First Name</b> : ' + this.nom + '<br> <b>Last Name</b> : ' + this.prenom ,
           buttons: [
             {
               text: 'Cancel',
@@ -69,7 +69,8 @@ export class LoginPage {
                 this.navCtrl.push('SignupPage');
               }
             }
-          ]
+          ],
+          cssClass: 'alertCustomCss',
         });
         alert.present();
         console.log('my data: ', this.cin);
