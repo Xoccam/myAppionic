@@ -6,6 +6,7 @@ import { User } from '../../providers/providers';
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs/Observable";
 
+import {AmountProvider} from '../../providers/amount/amount'
 
 @IonicPage()
 @Component({
@@ -36,13 +37,12 @@ export class LoginPage {
     public user: User,
     public toastCtrl: ToastController,
     public translateService: TranslateService,
-    private alertCtrl: AlertController, public httpClient: HttpClient) {
-
+    private alertCtrl: AlertController, public httpClient: HttpClient, public amountprov:AmountProvider) {
   }
 
   public openModal(){
-
-    this.credentials = this.httpClient.post('http://10.2.1.128:6060/getCredentials',{"rib":"999","numCheque":"111","montant":this.account.montant});
+    this.amountprov.amount = this.account.montant;
+    this.credentials = this.httpClient.post('http://10.2.1.128:6060/getCredentials',{"rib":"000402500339580","numCheque":"9123456","montant":this.account.montant});
     this.credentials
       .subscribe(data => {
         this.cin=data[0];

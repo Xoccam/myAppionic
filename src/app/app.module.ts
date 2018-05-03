@@ -15,6 +15,7 @@ import { User } from '../providers/providers';
 import { Api } from '../providers/providers';
 import { MyApp } from './app.component';
 import {HTTP} from "@ionic-native/http";
+import { AmountProvider } from '../providers/amount/amount';
 
 
 // The translate loader needs to know where to load i18n files
@@ -69,7 +70,8 @@ export function provideSettings(storage: Storage) {
     StatusBar,
     { provide: Settings, useFactory: provideSettings, deps: [Storage] },
     // Keep this to enable Ionic's runtime error handling during development
-    { provide: ErrorHandler, useClass: IonicErrorHandler }
+    { provide: ErrorHandler, useClass: IonicErrorHandler },
+    AmountProvider
   ]
 })
 export class AppModule { }

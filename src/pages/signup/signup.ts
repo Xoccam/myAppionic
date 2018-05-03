@@ -7,6 +7,8 @@ import { MainPage } from '../pages';
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs/Observable";
 
+import {AmountProvider} from '../../providers/amount/amount'
+
 @IonicPage()
 @Component({
   selector: 'page-signup',
@@ -30,9 +32,9 @@ export class SignupPage {
   constructor(public navCtrl: NavController,
     public user: User,
     public toastCtrl: ToastController,
-    public translateService: TranslateService,public httpClient: HttpClient,private alertCtrl: AlertController) {
+    public translateService: TranslateService,public httpClient: HttpClient,private alertCtrl: AlertController,public amountprov: AmountProvider) {
 
-    this.credentials = this.httpClient.post('http://10.2.1.128:6060/getCredentials',{"rib":"222","numCheque":"123456","montant":30});
+    this.credentials = this.httpClient.post('http://10.2.1.128:6060/getCredentials',{"rib":"000402500339580","numCheque":"9123456","montant":this.amountprov.amount});
     this.credentials
       .subscribe(data => {
         this.status=data[3];
