@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
-import { IonicPage, NavController, ToastController, AlertController } from 'ionic-angular';
+import {IonicPage, NavController, ToastController, AlertController, LoadingController} from 'ionic-angular';
 
 import { User } from '../../providers/providers';
 import {HttpClient} from "@angular/common/http";
@@ -37,7 +37,7 @@ export class LoginPage {
     public user: User,
     public toastCtrl: ToastController,
     public translateService: TranslateService,
-    private alertCtrl: AlertController, public httpClient: HttpClient, public amountprov:AmountProvider) {
+    private alertCtrl: AlertController, public httpClient: HttpClient, public amountprov:AmountProvider,public loadingCtrl: LoadingController) {
   }
 
   public openModal(){
@@ -75,10 +75,20 @@ export class LoginPage {
               text: 'Confirm',
               handler: () => {
                 console.log('Confirm');
-                let TIME_IN_MS = 2000;
-                let hideFooterTimeout = setTimeout( () => {
+                let loading = this.loadingCtrl.create({
+                  content: 'Please wait...'
+                });
+
+                loading.present();
+
+                setTimeout(() => {
+                  loading.dismiss();
                   this.navCtrl.push('SignupPage');
-                }, TIME_IN_MS);
+                }, 5000);
+                // let TIME_IN_MS = 2000;
+                // let hideFooterTimeout = setTimeout( () => {
+                //   this.navCtrl.push('SignupPage');
+                // }, TIME_IN_MS);
 
               }
             }
